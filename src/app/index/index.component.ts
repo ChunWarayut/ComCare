@@ -14,44 +14,43 @@ export class IndexComponent implements OnInit {
   database = firebase.database().ref('posts');
 
   key = firebase.database().ref('posts').push().key;
-  
-  color = 'darkgrey';
+
   constructor(db: AngularFireDatabase,
     public router: Router) {
    // this.books = db.list('/posts').valueChanges();
     db.list('/posts').valueChanges().subscribe(_data => {
-      this.books = _data.reverse()
-    })
+      this.books = _data.reverse();
+    });
 }
 
   ngOnInit() {
   }
 
-  onClick(Username,name) {
+  onClick(Username, name) {
     const ttx = {
       Username: Username || 'anonymous',
       Content: name || 'ไม่ระบุ',
       Times: Date.now(),
       Like: 0,
       UnLike: 0,
-      ID:this.key
+      ID: this.key
     };
-    const update ={}
-    update [this.key] = ttx
+    const update = {};
+    update [this.key] = ttx;
     this.database.update(update);
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 
   onLike(user) {
-    user.Like++
+    user.Like++;
     console.log(user);
     console.log(user.ID);
-    this.database.child(user.ID).update({Like:user.Like})
+    this.database.child(user.ID).update({Like: user.Like});
 
   }
   onUnLike(user) {
-    user.UnLike++
-    this.database.child(user.ID).update({UnLike:user.UnLike})
+    user.UnLike++;
+    this.database.child(user.ID).update({UnLike: user.UnLike});
 
   }
 }
