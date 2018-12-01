@@ -1,0 +1,63 @@
+<div class="card text-center">
+  <!--  -->
+  <div class="card-header">
+    NoName
+  </div>
+  <!--  -->
+  <div class="card-body">
+<!--  -->
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">@</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Username" #Username >
+      </div>
+<!--  -->
+
+<div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">With textarea</span>
+    </div>
+    <textarea class="form-control" #name  aria-label="With textarea"></textarea>
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary"  (click)="onClick(Username.value, name.value, Username.value = null, name.value = null)" >โพสต์</button>
+      </div>
+  </div>
+  <!--  -->
+
+  </div>
+</div>
+<hr/>
+
+<!--  -->
+<div  *ngFor="let user of books ">
+<div class="card" >
+    <div class="card-header" >
+        @{{ user.Username }}
+    </div>
+    <div class="card-body" >
+        {{ user.Content}}
+    </div>
+    <div class="card-footer">
+      <div class="row no-gutters">
+  <div class="col-auto mr-auto">{{ user.Times | timeago:live }} </div>
+  <div class="col-auto ">
+      <button class="btn btn-primary btn-sm" (click)="onLike(user)" >
+        <span class="glyphicon glyphicon-thumbs-up" ></span>  Like {{user.Like}}
+      </button> 
+      &nbsp;
+      <button  class="btn btn-danger btn-sm" (click)="onUnLike(user)" >
+        <span class="glyphicon glyphicon-thumbs-down"></span> UnLike {{user.UnLike}}
+      </button> 
+</div>
+</div>
+      <div class="col-md-1">
+                       
+      </div>
+      <div class="col-md-auto">
+                
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
